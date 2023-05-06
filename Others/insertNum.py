@@ -3,7 +3,7 @@ Given : string including 'L' and 'R'
 Return: array of nums
 
 When you hit 'L', you should append the (number+1) to the left of the current number.
-When you hit 'LR, you should append the (number+1) to the right of the current number.
+When you hit 'R', you should append the (number+1) to the right of the current number.
 """
 
 
