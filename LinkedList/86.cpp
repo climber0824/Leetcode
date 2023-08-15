@@ -9,22 +9,44 @@ struct ListNode {
 class Solution {
 public:
     ListNode* partition(ListNode* head, int x) {
-        ListNode node1(0), node2(0);
-        ListNode *p1 = &node1, *p2 = &node2;
-
-        while (head) {
+        /*
+        // sol1:
+        ListNode less(0), greater(0);
+        ListNode *lessPtr = &less, *greaterPtr = &greater;
+        while (head != NULL) {
+            cout << head->val << endl;
             if (head->val < x) {
-                p1->next = head;
-                p1 = p1->next;
+                lessPtr->next = head;
+                lessPtr = lessPtr->next;
             } else {
-                p2->next = head;
-                p2 = p2->next;
+                greaterPtr->next = head;
+                greaterPtr = greaterPtr->next;
             }
             head = head->next;
         }
-        p2->next = NULL;
-        p1->next = node2.next;
+        greaterPtr->next = NULL;
+        lessPtr->next = greater.next;
 
-        return node1.next;
+        return less.next;        
+        */
+        // sol2
+        ListNode* less = new ListNode();
+        ListNode* greater = new ListNode();
+        ListNode *lessPtr = less, *greaterPtr = greater;
+        
+        while (head) {
+            if (head->val < x) {
+                lessPtr->next = head;
+                lessPtr = lessPtr->next;
+            } else {
+                greaterPtr->next = head;
+                greaterPtr = greaterPtr->next; 
+            }
+            head = head->next;
+        }
+        lessPtr->next = greater->next;
+        greaterPtr->next = NULL;
+        
+        return less->next;
     }
 };
